@@ -32,4 +32,18 @@ const getMedata = async (req, res) => {
   }
 };
 
-module.exports = { getAllMetadata, createMetadata, getMedata };
+const getTotalMetadataDocsCount = async (req, res) => {
+  try {
+    const count = await Metadata.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch count" });
+  }
+};
+module.exports = {
+  getAllMetadata,
+  createMetadata,
+  getMedata,
+  getTotalMetadataDocsCount,
+};
